@@ -103,7 +103,6 @@ evolution
 exfat-utils
 fdupes
 fedora-release-workstation
-filezilla
 firefox
 ffmpeg
 flatpak
