@@ -60,6 +60,7 @@ xconfig --defaultdesktop=GNOME --startxonboot
 
 # Package groups to install
 # Listed on fedora workstation with: sudo dnf group list -v hidden
+   Common NetworkManager Submodules
 %packages
 @^workstation-product-environment
 @workstation-product
@@ -77,7 +78,9 @@ xconfig --defaultdesktop=GNOME --startxonboot
 @java
 @libreoffice
 @multimedia
+@networkmanager-submodules
 @office
+@printing
 @gnome-desktop
 @Sound and Video
 @system-tools
