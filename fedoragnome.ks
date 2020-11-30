@@ -1,6 +1,6 @@
-#version=F33
+# version=F33
 # Reference https://docs.fedoraproject.org/en-US/fedora/rawhide/install-guide/appendixes/Kickstart_Syntax_Reference
-
+# Warning.  This will wipe all data.  It will wipe the first disk, but could potentially wipe all data on all disks.
 # URLs and REPOs
 url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-33&arch=x86_64"
 repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f33&arch=x86_64" --cost=0
@@ -30,9 +30,12 @@ network  --hostname=localhost.localdomain
 # Run the Setup Agent on first boot
 firstboot --enable
 
-# Generated using Blivet version 3.3.0
+# Only use first disk
 ignoredisk --only-use=sda
+
+# Automatic partitioning  -  creates two subvolumes: root home
 autopart --encrypted
+
 # Partition clearing information
 clearpart --all --initlabel
 zerombr
