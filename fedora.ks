@@ -48,6 +48,9 @@ rootpw --lock
 # User fedora with password fedoraworkstation
 user --name=fedora --password=fedoraworkstation --plaintext --groups=wheel
 
+# Configure X Window System
+xconfig --defaultdesktop=GNOME --startxonboot
+
 # Package groups to install
 %packages
 @^workstation-product-environment
@@ -58,9 +61,9 @@ user --name=fedora --password=fedoraworkstation --plaintext --groups=wheel
 @editors
 @libreoffice
 @office
+@gnome-desktop
 @Sound and Video
 @system-tools
-@X Window System
 alacarte
 audacity
 autoconf
