@@ -1,4 +1,5 @@
 #version=F33
+# Reference https://docs.fedoraproject.org/en-US/fedora/rawhide/install-guide/appendixes/Kickstart_Syntax_Reference
 # URLs and REPOs
 url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-33&arch=x86_64"
 repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f33&arch=x86_64" --cost=0
@@ -52,14 +53,24 @@ user --name=fedora --password=fedoraworkstation --plaintext --groups=wheel
 xconfig --defaultdesktop=GNOME --startxonboot
 
 # Package groups to install
+# Listed on fedora workstation with: sudo dnf group list -v hidden
 %packages
 @^workstation-product-environment
+@workstation-product
 @admin-tools
+@base-x
+@basic-desktop
 @core
-@Desktop
 @development-tools
+-@dial-up
 @editors
+@firefox
+@fonts
+@guest-desktop-agents
+@hardware-support
+@java
 @libreoffice
+@multimedia
 @office
 @gnome-desktop
 @Sound and Video
