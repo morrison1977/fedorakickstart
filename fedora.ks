@@ -10,9 +10,10 @@ repo --name=rpmfusion-free-tainted --mirrorlist="https://mirrors.rpmfusion.org/m
 repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-33&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
 repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-33&arch=x86_64" --cost=0
 repo --name=rpmfusion-nonfree-tainted --mirrorlist="https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-tainted-33&arch=x86_64"
-
-# Use graphical install
-graphical
+# Google Chrome
+repo --name google-chrome --install --baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+# Use text install
+text
 
 # Keyboard layouts
 keyboard --xlayouts='us'
@@ -20,6 +21,7 @@ keyboard --xlayouts='us'
 lang en_US.UTF-8
 
 # Network information
+network  --bootproto=dhcp --device=eth0 --ipv6=auto --activate
 network  --hostname=localhost.localdomain
 
 # Run the Setup Agent on first boot
@@ -47,6 +49,7 @@ rootpw --lock
 %packages
 @^workstation-product-environment
 @admin-tools
+@core
 @development-tools
 @editors
 @libreoffice
@@ -62,6 +65,7 @@ automake
 backintime-qt
 baobab
 bijiben
+-biosdevname
 blivet-gui
 borgbackup
 cachefilesd
