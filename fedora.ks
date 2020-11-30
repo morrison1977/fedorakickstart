@@ -31,7 +31,7 @@ firstboot --enable
 ignoredisk --only-use=sda
 autopart --encrypted
 # Partition clearing information
-clearpart --none --initlabel
+clearpart --all --initlabel
 
 # SELinux
 selinux --permissive
