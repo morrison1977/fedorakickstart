@@ -56,7 +56,6 @@ rootpw --lock
 @office
 @sound-and-video
 @system-tools
-
 alacarte
 audacity
 autoconf
@@ -113,11 +112,9 @@ syncthing
 transmission
 vim-enhanced
 vlc
-
 %end
 
 %addon com_redhat_kdump --disable --reserve-mb='128'
-
 %end
 
 %anaconda
@@ -131,6 +128,20 @@ pwpolicy luks --minlen=6 --minquality=1 --notstrict --nochanges --notempty
 dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 %end
 
+# Post-installation Script
+%post
+# Disable IPv6
+cat <<EOF >> /etc/sysctl.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+EOF
+#Enable GPG key for Google
+cat <<EOF >> /etc/yum.repos.d/google-chrome.repo
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+EOF
+%end
+
 # Reboot After Installation
-reboot --eject
+reboot
 
