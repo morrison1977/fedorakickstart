@@ -1,5 +1,6 @@
 #version=F33
 # Reference https://docs.fedoraproject.org/en-US/fedora/rawhide/install-guide/appendixes/Kickstart_Syntax_Reference
+
 # URLs and REPOs
 url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-33&arch=x86_64"
 repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f33&arch=x86_64" --cost=0
@@ -13,6 +14,7 @@ repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.or
 repo --name=rpmfusion-nonfree-tainted --mirrorlist="https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-tainted-33&arch=x86_64"
 # Google Chrome
 repo --name google-chrome --install --baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+
 # Use text install
 text
 
@@ -33,7 +35,7 @@ ignoredisk --only-use=sda
 autopart --encrypted
 # Partition clearing information
 clearpart --all --initlabel
-
+zerombr
 # SELinux
 selinux --permissive
 
@@ -51,6 +53,7 @@ user --name=fedora --password=fedoraworkstation --plaintext --groups=wheel
 
 # Configure X Window System
 xconfig --defaultdesktop=GNOME --startxonboot
+
 
 # Package groups to install
 # Listed on fedora workstation with: sudo dnf group list -v hidden
