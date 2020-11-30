@@ -114,6 +114,7 @@ transmission
 vim-enhanced
 vlc
 
+%end
 
 %addon com_redhat_kdump --disable --reserve-mb='128'
 
