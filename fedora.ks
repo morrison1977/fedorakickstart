@@ -42,20 +42,25 @@ timezone America/Indiana/Indianapolis --utc
 # System services
 services --enabled=chronyd,sshd
 
-#Root password
+# Lock Root
 rootpw --lock
+
+# User fedora with password fedoraworkstation
+user --name=fedora --password=fedoraworkstation --plaintext --groups=wheel
 
 # Package groups to install
 %packages
 @^workstation-product-environment
 @admin-tools
 @core
+@Desktop
 @development-tools
 @editors
 @libreoffice
 @office
-@sound-and-video
+@Sound and Video
 @system-tools
+@X Window System
 alacarte
 audacity
 autoconf
@@ -140,6 +145,7 @@ EOF
 cat <<EOF >> /etc/yum.repos.d/google-chrome.repo
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
+echo "fedora   ALL=(ALL)   NOPASSWD: ALL" >> /etc/sudoers.d/fedora
 %end
 
 # Reboot After Installation
