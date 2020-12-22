@@ -164,14 +164,19 @@ git clone https://github.com/keeferrourke/la-capitaine-icon-theme.git
 # OR install via copr rep, but less repos are better
 #sudo dnf copr enable tcg/themes
 #sudo dnf install la-capitaine-icon-theme
-# Disable IPv6
 # Get some fonts
 mkdir ~/tmp
 wget -O ~/Downloads/font-archive.zip http://fonts.google.com/download\?family=Ubuntu
-unzip "font-archive.zip" -d ~/tmp
-sudo cp ~/tmp/*.ttf /usr/share/fonts/
+nzip "font-archive.zip" -d ~/tmp
+sudo cp '~/tmp/*.ttf /usr/share/fonts/'
 fc-cache -f -v
-
+# Enable multimedia playback with gstreamer
+sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+sudo dnf groupupdate sound-and-video
+# Install TLP for optimizing laptop battery
+sudo dnf install tlp tlp-rdw
+sudo systemctl enable tlp
+# Disable IPv6
 cat <<EOF >> /etc/sysctl.conf
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
@@ -182,6 +187,10 @@ cat <<EOF >> /etc/yum.repos.d/google-chrome.repo
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 echo "fedora   ALL=(ALL)   NOPASSWD: ALL" >> /etc/sudoers.d/fedora
+echo "
+echo "fastestmirror=true" >> /etc/dnf/dnf.conf
+echo "deltarpm=true" >> /etc/dnf/dnf.conf
+#
 %end
 
 # Reboot After Installation
