@@ -157,7 +157,21 @@ dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-releas
 
 # Post-installation Script
 %post
+# Get icon theme
+mkdir ~/.icons
+cd ~/.icons
+git clone https://github.com/keeferrourke/la-capitaine-icon-theme.git
+# OR install via copr rep, but less repos are better
+#sudo dnf copr enable tcg/themes
+#sudo dnf install la-capitaine-icon-theme
 # Disable IPv6
+# Get some fonts
+mkdir ~/tmp
+wget -O ~/Downloads/font-archive.zip http://fonts.google.com/download\?family=Ubuntu
+unzip "font-archive.zip" -d ~/tmp
+sudo cp ~/tmp/*.ttf /usr/share/fonts/
+fc-cache -f -v
+
 cat <<EOF >> /etc/sysctl.conf
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
